@@ -1,37 +1,95 @@
 package unlam.concesionaria;
 
 public class Cliente {
-	
+
+	private int codigoCliente;
+	private String nombre;
+	private String apellido;
+	private int edad;
 	private int dinero;
 	private static int cantidadClientes;
-	private int edad;
+	private boolean esVip;
+
 	
 	public Cliente() {
 		
 	}
 	
-	public void setDinero(int dinero) {
-		this.dinero=dinero;
+
+	public Cliente(int codigoCliente, String nombre, String apellido, int edad, int dinero, boolean esVip) {
+		super();
+		this.codigoCliente = codigoCliente;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.edad = edad;
+		this.dinero = dinero;
+		this.esVip = esVip;
 	}
-	
-	public int getDinero() {
-		return this.dinero;
+
+
+
+	public int getCodigoCliente() {
+		return codigoCliente;
 	}
-	
-	public void aumentarCantidadDeClientes() {
-		cantidadClientes++;		
+
+	public void setCodigoCliente(int codigoCliente) {
+		this.codigoCliente = codigoCliente;
 	}
-	
-	public static int getClientes() {
-		return cantidadClientes;
+
+	public String getNombre() {
+		return nombre;
 	}
-	
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
 	public int getEdad() {
-		return this.edad;
+		return edad;
 	}
 
 	public void setEdad(int edad) {
-		this.edad=edad;
-		
+		this.edad = edad;
 	}
+
+	public int getDinero() {
+		return dinero;
+	}
+
+	public void setDinero(int dinero) {
+		this.dinero = dinero;
+	}
+
+	public static int getCantidadClientes() {
+		return cantidadClientes;
+	}
+
+	public static void setCantidadClientes(int cantidadClientes) {
+		Cliente.cantidadClientes = cantidadClientes;
+	}
+
+	public boolean isEsVip() {
+		return esVip;
+	}
+
+	public void setEsVip(boolean esVip) {
+		this.esVip = esVip;
+	}
+
+	@Override
+	public String toString() {
+		return "Cliente [codigoCliente=" + codigoCliente + ", nombre=" + nombre + ", apellido=" + apellido + ", edad="
+				+ edad + ", dinero=" + dinero + ", esVip=" + esVip + "]";
+	}
+
+	
+
 }

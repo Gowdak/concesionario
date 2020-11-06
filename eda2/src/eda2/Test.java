@@ -6,6 +6,7 @@ import eda2.Cliente;
 import eda2.Coche;
 
 public class Test {
+	/*
 
 	public static void main(String[] args) {
 		Scanner teclado=new Scanner (System.in);
@@ -147,7 +148,7 @@ public class Test {
 		
 		
 	}
-
+*/
 }
 
 	
