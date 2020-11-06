@@ -1,10 +1,13 @@
 package unlam.concesionaria;
 
 public class Vehiculo {
+	private int codigoVehiculo;
 	private String marca;
 	private String modelo;
 	private String color;
 	private int año;
+	private int kms;
+	private boolean esImportado;
 	private float precio;
 	private int cantidadDeCoches;
 
@@ -19,15 +22,50 @@ public class Vehiculo {
 		
 	}
 
-	public Vehiculo(String marca, String modelo, String color, int año, int precio, int cantidadDeCoches) {
+	
+
+	
+
+
+	public Vehiculo(int codigoVehiculo, String marca, String modelo, String color, int año, int kms,
+			boolean esImportado, float precio, int cantidadDeCoches, int tipoVehiculo) {
 		super();
+		this.codigoVehiculo = codigoVehiculo;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.color = color;
 		this.año = año;
+		this.kms = kms;
+		this.esImportado = esImportado;
 		this.precio = precio;
 		this.cantidadDeCoches = cantidadDeCoches;
+		this.tipoVehiculo = tipoVehiculo;
 	}
+	
+	
+
+
+
+
+
+
+	public int getCodigoVehiculo() {
+		return codigoVehiculo;
+	}
+
+
+
+
+
+
+	public void setCodigoVehiculo(int codigoVehiculo) {
+		this.codigoVehiculo = codigoVehiculo;
+	}
+
+
+
+
+
 
 	public String getMarca() {
 		return marca;
@@ -84,11 +122,39 @@ public class Vehiculo {
 	public void setTipoVehiculo(int tipoVehiculo) {
 		this.tipoVehiculo = tipoVehiculo;
 	}
+	
+	
+
+	public int getKms() {
+		return kms;
+	}
+
+	public void setKms(int kms) {
+		this.kms = kms;
+	}
+
+	public boolean isEsImportado() {
+		return esImportado;
+	}
+
+	public void setEsImportado(boolean esImportado) {
+		this.esImportado = esImportado;
+	}
+
+
+
+
+
 
 	@Override
 	public String toString() {
-		return "Coche [marca=" + marca + ", modelo=" + modelo + ", año=" + año + ", precio=" + precio
-				+ ", cantidadDeCoches=" + cantidadDeCoches + "]";
+		return "Vehiculo [codigoVehiculo=" + codigoVehiculo + ", marca=" + marca + ", modelo=" + modelo + ", color="
+				+ color + ", año=" + año + ", kms=" + kms + ", esImportado=" + esImportado + ", precio=" + precio
+				+ ", cantidadDeCoches=" + cantidadDeCoches + ", tipoVehiculo=" + tipoVehiculo + "]";
 	}
+
+	
+
+	
 
 }

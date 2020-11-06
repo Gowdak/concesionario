@@ -29,10 +29,16 @@ public class Test {
 				vehiculos = new Vehiculo[cantidadAutos];
 				while (cantidadAutos != cantidadIngresados) {
 					Vehiculo vehiculo = new Vehiculo();
+					System.out.println("Ingrese el tipo de vehiculo: 1- Auto , 2- Camioneta, 3 - Moto \n");
+					int tipoVehiculo = teclado.nextInt();
 					System.out.println("Ingrese la marca del vehiculo \n");
 					String marca = teclado.next();
 					System.out.println("Ingrese el modelo del vehiculo \n");
 					String modelo = teclado.next();
+					System.out.println("Ingrese los kms del vehiculo \n");
+					int kms = teclado.nextInt();
+					System.out.println("Es importado el vehiculo ? Opciones Si/No \n");
+					boolean esImportado = (teclado.next().equals("Si")) ? true : false;
 					System.out.println("Ingrese el color del vehiculo \n");
 					String color = teclado.next();
 					System.out.println("Ingrese la cantidad de años del vehiculo \n");
@@ -41,8 +47,12 @@ public class Test {
 					float precio = teclado.nextFloat();
 
 					/* Seteamos al vehiculo sus propiedades */
+					vehiculo.setCodigoVehiculo(cantidadIngresados);
+					vehiculo.setTipoVehiculo(tipoVehiculo);
 					vehiculo.setMarca(marca);
 					vehiculo.setModelo(modelo);
+					vehiculo.setKms(kms);
+					vehiculo.setEsImportado(esImportado);
 					vehiculo.setColor(color);
 					vehiculo.setCantidadDeCoches(año);
 					vehiculo.setPrecio(precio);
@@ -68,20 +78,23 @@ public class Test {
 					System.out.println("Es un cliente recurrente (VIP) ? Opciones =  Si/No  \n");
 					String opcionVip = teclado.next();
 					boolean vip = opcionVip.equals("Si") ? true : false;
+					System.out.println("Ingrese el saldo que cuenta el cliente \n ");
+					float saldo = teclado.nextFloat();
 
 					/* Seteamos al cliente y sus propiedades */
 					Cliente cliente = new Cliente();
+					cliente.setCodigoCliente(cantidadIngresadosClientes);
 					cliente.setNombre(nombre);
 					cliente.setApellido(apellido);
 					cliente.setEdad(edad);
 					cliente.setEsVip(vip);
-
+					cliente.setDinero(saldo);
 					/* Asignamos al cliente */
 					clientes[cantidadIngresadosClientes] = cliente;
 
 					/* Alteramos el contador de clientes */
 					cantidadIngresadosClientes++;
-					
+
 				}
 				break;
 
@@ -92,13 +105,14 @@ public class Test {
 				vendedores = new Vendedor[cantidadVendedores];
 
 				while (cantidadVendedores != cantidadIngresadosVendedores) {
-					System.out.println("Ingrese el nombre del cliente \n");
+					System.out.println("Ingrese el nombre del vendedor \n");
 					String nombre = teclado.next();
-					System.out.println("Ingrese el apellido del cliente \n");
+					System.out.println("Ingrese el apellido del vendedor \n");
 					String apellido = teclado.next();
 
 					/* Seteamos al cliente y sus propiedades */
 					Vendedor vendedor = new Vendedor();
+					vendedor.setCodigoVendedor(cantidadIngresadosVendedores);
 					vendedor.setNombre(nombre);
 					vendedor.setApellido(apellido);
 
@@ -131,37 +145,116 @@ public class Test {
 
 			switch (opcionPrincipal) {
 			case 1:
-				if (vehiculos.length > 0) {
-					System.out.println("Cantidad de vehiculos " + vehiculos.length);
-					for (Vehiculo vehiculo : vehiculos) {
-						System.out.println(vehiculo.toString());
+				if (vehiculos != null) {
+					if (vehiculos.length > 0) {
+						System.out.println("Cantidad de vehiculos " + vehiculos.length);
+						for (Vehiculo vehiculo : vehiculos) {
+							System.out.println(vehiculo.toString());
+						}
+					} else {
+						System.out.println("No hay vehiculos disponibles");
 					}
-				}else {
-					System.out.println("No hay vehiculos disponibles");
 				}
 				break;
 			case 2:
-				if (clientes.length > 0) {
-					System.out.println("Cantidad de clientes " + clientes.length);
-					for (Cliente cliente : clientes) {
-						System.out.println(cliente.toString());
+				if (clientes != null) {
+					if (clientes.length > 0) {
+						System.out.println("Cantidad de clientes " + clientes.length);
+						for (Cliente cliente : clientes) {
+							System.out.println(cliente.toString());
+						}
+					} else {
+						System.out.println("No hay clientes disponibles cargados en el sistema");
 					}
-				}else {
+				} else {
 					System.out.println("No hay clientes disponibles cargados en el sistema");
 				}
 				break;
 			case 3:
-				if (vendedores.length > 0) {
-					System.out.println("Cantidad de vendedores " + clientes.length);
-					for (Vendedor vendedor : vendedores) {
-						System.out.println(vendedor.toString());
+				if (vendedores != null) {
+					if (vendedores.length > 0) {
+						System.out.println("Cantidad de vendedores " + clientes.length);
+						for (Vendedor vendedor : vendedores) {
+							System.out.println(vendedor.toString());
+						}
+					} else {
+						System.out.println("No hay vendedores disponibles");
 					}
-				}else {
-					System.out.println("No hay vendedores disponibles");
 				}
 				break;
 			case 4:
-				System.out.println("No implementado jeje");
+				int codVendedor;
+				int codCliente;
+				int codVehiculo;
+
+				boolean esVendedorVerificado = false;
+				boolean esClienteVerificado = false;
+				boolean esVehiculoVerificado = false;
+
+				System.out.println("----------Iniciamos transaccion---------");
+				do {
+					System.out.println("Ingrese su codigo de vendedor (Para anular operacion ingrese 9999) : \n ");
+					codVendedor = teclado.nextInt();
+					if (codVendedor <= vendedores.length) {
+						esVendedorVerificado = true;
+					}
+
+				} while (esVendedorVerificado == false && codVendedor != 9999);
+
+				do {
+					System.out.println("Ingrese su codigo del cliente (Para anular operacion ingrese 9999) : \n ");
+					codCliente = teclado.nextInt();
+					if (codCliente <= clientes.length) {
+						esClienteVerificado = true;
+					}
+
+				} while (esClienteVerificado == false && codCliente != 9999);
+
+				do {
+					System.out.println("Ingrese su codigo del vehiculo (Para anular operacion ingrese 9999) : \n ");
+					codVehiculo = teclado.nextInt();
+					if (codVehiculo <= vehiculos.length) {
+						esVehiculoVerificado = true;
+					}
+
+				} while (esVehiculoVerificado == false && codVehiculo != 9999);
+
+				if (esClienteVerificado && esVehiculoVerificado && esVendedorVerificado) {
+
+					System.out.println("Desea financiar el vehiculo: Si / No");
+					boolean opcionFinancia = teclado.next().equals("Si") ? true : false;
+					Venta ven1;
+					if (opcionFinancia) {
+						System.out.println("En cuantas cuotas? 12 , 24 , 36 , 48, 60");
+						int cuotas = teclado.nextInt();
+						ven1 = new Venta(clientes[codCliente], vendedores[codVendedor], vehiculos[codVehiculo], true,
+								cuotas);
+					} else {
+						ven1 = new Venta(clientes[codCliente], vendedores[codVendedor], vehiculos[codVehiculo], false,
+								0);
+					}
+
+					if (ven1.vender()) {
+						System.out.println("\nSe ha realizado correctamente la transaccion");
+						System.out.println("Vendedor  " + vendedores[codVendedor].getNombre() + " "
+								+ vendedores[codVendedor].getApellido() + " ha vendido \n");
+						System.out.println("Vehiculo : " + vehiculos[codVehiculo].getMarca() + " \n"
+								+ vehiculos[codVehiculo].getModelo() + " \nEl nuevo propietario es : ");
+						System.out.println("Cliente : " + clientes[codCliente].getNombre() + " "
+								+ clientes[codCliente].getApellido() + " \n");
+						System.out.println("Recuerde que la transaccion no incluye costos de transferencia de: "
+								+ ven1.valorTransferencia());
+						System.out.println("Recuerde que sus patentes son de un monto de: " + ven1.calcularPatente());
+
+					} else {
+						System.out.println("Verificar errores anteriores");
+					}
+
+				} else {
+					System.out.println(
+							"Las verificaciones de cliente o vendedor o vehiculo han fallado. Vuelva a intentarlo");
+				}
+
 				break;
 			case 0:
 				System.out.println("Fin de proceso principal");

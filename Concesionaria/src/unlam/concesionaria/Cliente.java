@@ -6,7 +6,7 @@ public class Cliente {
 	private String nombre;
 	private String apellido;
 	private int edad;
-	private int dinero;
+	private float dinero;
 	private static int cantidadClientes;
 	private boolean esVip;
 
@@ -60,11 +60,11 @@ public class Cliente {
 		this.edad = edad;
 	}
 
-	public int getDinero() {
+	public float getDinero() {
 		return dinero;
 	}
 
-	public void setDinero(int dinero) {
+	public void setDinero(float dinero) {
 		this.dinero = dinero;
 	}
 
